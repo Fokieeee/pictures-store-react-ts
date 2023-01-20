@@ -1,0 +1,14 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2em;
+  background-color: var(--clr-accent);
+  color: var(--clr-dark);
+  height: 4em;
+}
+
+.header__priceBox {
+  display: flex;
+  gap: 3em;
+}
