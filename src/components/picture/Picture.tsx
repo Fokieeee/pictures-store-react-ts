@@ -10,7 +10,11 @@ import {
   faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
-import { ReducerAction, ReducerActionType } from "../../context/CartProvider";
+import {
+  CartItemType,
+  ReducerAction,
+  ReducerActionType,
+} from "../../context/CartProvider";
 library.add(faS, faHeart, far, faPlus, faCheck);
 
 type PropsType = {
@@ -19,6 +23,8 @@ type PropsType = {
   dispatch: React.Dispatch<ReducerAction>;
   REDUCER_ACTIONS: ReducerActionType;
   inCart: boolean;
+  cart: CartItemType[];
+  onFavorite: (id: string) => void;
 };
 
 export const Picture = ({
@@ -27,14 +33,20 @@ export const Picture = ({
   dispatch,
   REDUCER_ACTIONS,
   inCart,
+  cart,
+  onFavorite,
 }: PropsType): ReactElement => {
   const [isHovered, setIsHovered] = useState(false);
 
   const onAdd = () => {
     dispatch({ type: REDUCER_ACTIONS.ADD, payload: { ...picture } });
+    console.log(cart);
   };
 
-  const onFavorite = () => {};
+  const onRemove = () => {
+    dispatch({ type: REDUCER_ACTIONS.REMOVE, payload: { ...picture } });
+    console.log(cart);
+  };
 
   return (
     <div
@@ -48,6 +60,7 @@ export const Picture = ({
           <div className={cl.picture__add}>
             {inCart ? (
               <FontAwesomeIcon
+                onClick={onRemove}
                 icon={["fas", "check"]}
                 className={cl.picture__check}
               />
@@ -59,7 +72,10 @@ export const Picture = ({
               />
             )}
           </div>
-          <div onClick={() => onFavorite()} className={cl.picture__favorite}>
+          <div
+            onClick={() => onFavorite(picture.id)}
+            className={cl.picture__favorite}
+          >
             {picture.isFavorite ? (
               <FontAwesomeIcon
                 icon={["fas", "heart"]}

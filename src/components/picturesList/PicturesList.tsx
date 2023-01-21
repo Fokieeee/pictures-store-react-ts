@@ -5,7 +5,7 @@ import { Picture } from "../picture/Picture";
 import cl from "./index.module.css";
 
 export const PicturesList = () => {
-  const { pictures } = usePictures();
+  const { pictures, setPictures, onFavorite } = usePictures();
   const { dispatch, REDUCER_ACTIONS, cart } = useCart();
 
   const getClass = (i: number) => {
@@ -15,12 +15,13 @@ export const PicturesList = () => {
       return "wide";
     }
   };
-
+  // console.log(pictures);
   let pageContent: ReactElement | ReactElement[] = <h3>Loading...</h3>;
 
   if (pictures?.length) {
     pageContent = pictures.map((picture, i) => {
       const inCart: boolean = cart.some((item) => item.id === picture.id);
+
       return (
         <Picture
           dispatch={dispatch}
@@ -29,6 +30,8 @@ export const PicturesList = () => {
           key={picture.id}
           className={getClass(i)}
           inCart={inCart}
+          cart={cart}
+          onFavorite={onFavorite}
         />
       );
     });

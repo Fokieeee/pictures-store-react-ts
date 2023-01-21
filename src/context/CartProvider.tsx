@@ -1,4 +1,4 @@
-import { createContext, ReactElement, useReducer } from "react";
+import { createContext, ReactElement, useMemo, useReducer } from "react";
 
 export type CartItemType = {
   url: string;
@@ -8,11 +8,12 @@ export type CartItemType = {
 
 type CartStateType = { cart: CartItemType[] };
 
-export const REDUCER_ACTION_TYPE = {
+const initCartState: CartStateType = { cart: [] };
+
+const REDUCER_ACTION_TYPE = {
   ADD: "ADD",
   REMOVE: "REMOVE",
   SUBMIT: "SUBMIT",
-  FAVORITE: "FAVORITE",
 };
 
 export type ReducerActionType = typeof REDUCER_ACTION_TYPE;
@@ -29,64 +30,47 @@ const reducer = (
   switch (action.type) {
     case REDUCER_ACTION_TYPE.ADD: {
       if (!action.payload) {
-        throw new Error("action.payload missing in ADD action");
+        throw new Error("action.payload missing at ADD action");
       }
-      const { id, url, isFavorite } = action.payload;
-
-      const filteredCart: CartItemType[] = state.cart.filter(
-        (item) => item.id !== id
-      );
-
-      return { ...state, cart: [...filteredCart, { id, url, isFavorite }] };
+      return { ...state, cart: [...state.cart, action.payload] };
     }
+
     case REDUCER_ACTION_TYPE.REMOVE: {
       if (!action.payload) {
-        throw new Error("action.payload missing in REMOVE action");
+        throw new Error("action.payload missing at REMOVE action");
       }
-      const filteredCart: CartItemType[] = state.cart.filter(
+
+      const filteredCart = state.cart.filter(
         (item) => item.id !== action.payload?.id
       );
       return { ...state, cart: [...filteredCart] };
     }
+
     case REDUCER_ACTION_TYPE.SUBMIT: {
-      if (!action.payload) {
-        throw new Error("action.payload missing in SUBMIT action");
-      }
       return { ...state, cart: [] };
-    }
-    case REDUCER_ACTION_TYPE.FAVORITE: {
-      if (!action.payload) {
-        throw new Error("action.payload missing in FAVORITE action");
-      }
-      const { url, id, isFavorite } = action.payload;
-
-      const filteredCart: CartItemType[] = state.cart.filter(
-        (item) => item.id !== id
-      );
-      action.payload.isFavorite = !action.payload.isFavorite;
-
-      return { ...state, cart: [...filteredCart, { url, id, isFavorite }] };
     }
     default:
       throw new Error("Unidentified reducer action type");
   }
 };
 
-const useCartContext = ({ cart: [] }: CartStateType) => {
-  const [state, dispatch] = useReducer(reducer, { cart: [] });
+const useCartContext = (initCartState: CartStateType) => {
+  const [state, dispatch] = useReducer(reducer, initCartState);
 
-  const totalItems = state.cart.length;
+  const REDUCER_ACTIONS = useMemo(() => {
+    return REDUCER_ACTION_TYPE;
+  }, []);
 
-  const totalPrice = new Intl.NumberFormat("en-US", {
+  const totalItems: number = state.cart.length;
+
+  const totalPrice: string = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
   }).format(state.cart.length * 6.99);
 
-  const REDUCER_ACTIONS = REDUCER_ACTION_TYPE;
-
   const cart = state.cart;
 
-  return { dispatch, totalItems, totalPrice, cart, REDUCER_ACTIONS };
+  return { dispatch, REDUCER_ACTIONS, totalItems, totalPrice, cart };
 };
 
 export type UseCartContextType = ReturnType<typeof useCartContext>;

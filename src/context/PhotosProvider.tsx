@@ -6,9 +6,17 @@ export type PicturesType = {
   isFavorite: boolean;
 };
 
-export type ContextType = { pictures: PicturesType[] };
+export type ContextType = {
+  pictures: PicturesType[];
+  setPictures: React.Dispatch<React.SetStateAction<PicturesType[]>>;
+  onFavorite: (id: string) => void;
+};
 
-const PicturesContext = createContext<ContextType>({ pictures: [] });
+const PicturesContext = createContext<ContextType>({
+  pictures: [],
+  setPictures: () => {},
+  onFavorite: () => {},
+});
 
 type ChildrenType = {
   children?: ReactElement | ReactElement[];
@@ -16,6 +24,14 @@ type ChildrenType = {
 
 export const PhotosProvider = ({ children }: ChildrenType): ReactElement => {
   const [pictures, setPictures] = useState<PicturesType[]>([]);
+
+  const onFavorite = (id: string) => {
+    const favoriteChanged = pictures.map((item) =>
+      item.id === id ? { ...item, isFavorite: !item.isFavorite } : item
+    );
+    setPictures(favoriteChanged);
+    console.log(pictures);
+  };
 
   useEffect(() => {
     try {
@@ -30,10 +46,10 @@ export const PhotosProvider = ({ children }: ChildrenType): ReactElement => {
     } catch (e: any) {
       alert(e);
     }
-  });
+  }, []);
 
   return (
-    <PicturesContext.Provider value={{ pictures }}>
+    <PicturesContext.Provider value={{ pictures, setPictures, onFavorite }}>
       {children}
     </PicturesContext.Provider>
   );
