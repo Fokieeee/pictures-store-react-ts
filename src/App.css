@@ -7,6 +7,24 @@
   padding: 0;
 }
 
+body {
+  background: #f5fffa;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  color: var(--light-blue);
+}
+a:hover {
+  color: var(--light-blue);
+}
+a:active {
+  color: var(--light-blue);
+}
+
 /*Custom Properties*/
 
 :root {

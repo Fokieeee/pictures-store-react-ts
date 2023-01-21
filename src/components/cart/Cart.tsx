@@ -5,21 +5,40 @@ import cl from "./index.module.css";
 
 export const Cart = () => {
   const [confirm, setConfirm] = useState<boolean>(false);
-  const [buttinText, setButtonText] = useState<string>("Place Order");
-  const { dispatch, totalItems, totalPrice, REDUCER_ACTIONS, cart } = useCart();
+  const [buttonText, setButtonText] = useState<string>("Place Order");
+  const { dispatch, REDUCER_ACTIONS, cart } = useCart();
 
   const order = () => {
-    dispatch({ type: REDUCER_ACTIONS.SUBMIT });
-    setConfirm(true);
+    setButtonText("Ordering...");
+    setTimeout(() => {
+      dispatch({ type: REDUCER_ACTIONS.SUBMIT });
+      setConfirm(true);
+      setButtonText("Place Order");
+    }, 3000);
   };
 
   return (
     <div className={cl.cart}>
+      <h1 className={cl.cart__title}>Check Out</h1>
       <ul className={cl.list}>
         {cart.map((item) => {
-          return <CartItem key={item.id} dispatch={dispatch} item={item} />;
+          return (
+            <CartItem
+              key={item.id}
+              dispatch={dispatch}
+              item={item}
+              REDUCER_ACTIONS={REDUCER_ACTIONS}
+            />
+          );
         })}
       </ul>
+      <button
+        disabled={!cart.length && true}
+        onClick={order}
+        className={cl.cart__submitButton}
+      >
+        {buttonText}
+      </button>
     </div>
   );
 };

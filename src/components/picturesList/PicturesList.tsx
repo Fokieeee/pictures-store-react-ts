@@ -15,8 +15,10 @@ export const PicturesList = () => {
       return "wide";
     }
   };
-  // console.log(pictures);
-  let pageContent: ReactElement | ReactElement[] = <h3>Loading...</h3>;
+
+  let pageContent: ReactElement | ReactElement[] = (
+    <h1 className={cl.pictureList__loading}>Loading...</h1>
+  );
 
   if (pictures?.length) {
     pageContent = pictures.map((picture, i) => {
