@@ -32,6 +32,7 @@ const reducer = (
       if (!action.payload) {
         throw new Error("action.payload missing at ADD action");
       }
+
       return { ...state, cart: [...state.cart, action.payload] };
     }
 
@@ -43,12 +44,14 @@ const reducer = (
       const filteredCart = state.cart.filter(
         (item) => item.id !== action.payload?.id
       );
+
       return { ...state, cart: [...filteredCart] };
     }
 
     case REDUCER_ACTION_TYPE.SUBMIT: {
       return { ...state, cart: [] };
     }
+
     default:
       throw new Error("Unidentified reducer action type");
   }

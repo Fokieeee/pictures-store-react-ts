@@ -25,3 +25,10 @@
   height: 1.7em;
   cursor: pointer;
 }
+
+.header__rightSide {
+  display: flex;
+  gap: 3em;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,13 +1,14 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import useCart from "../../hooks/useCart";
 import { usePictures } from "../../hooks/usePictures";
 import { Picture } from "../picture/Picture";
 import cl from "./index.module.css";
 
 export const PicturesList = () => {
-  const { pictures, setPictures, onFavorite } = usePictures();
+  const { pictures, onFavorite } = usePictures();
   const { dispatch, REDUCER_ACTIONS, cart } = useCart();
 
+	//Picture sizing function
   const getClass = (i: number) => {
     if (i % 5 === 0) {
       return "big";
@@ -32,7 +33,6 @@ export const PicturesList = () => {
           key={picture.id}
           className={getClass(i)}
           inCart={inCart}
-          cart={cart}
           onFavorite={onFavorite}
         />
       );

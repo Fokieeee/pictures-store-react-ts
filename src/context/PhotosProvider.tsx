@@ -1,5 +1,5 @@
 import React, { createContext, ReactElement, useEffect, useState } from "react";
-//https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json
+
 export type PicturesType = {
   url: string;
   id: string;
@@ -23,19 +23,23 @@ type ChildrenType = {
 };
 
 export const PhotosProvider = ({ children }: ChildrenType): ReactElement => {
+
   const [pictures, setPictures] = useState<PicturesType[]>([]);
 
   const onFavorite = (id: string) => {
+
     const favoriteChanged = pictures.map((item) =>
       item.id === id ? { ...item, isFavorite: !item.isFavorite } : item
     );
+
     setPictures(favoriteChanged);
-    console.log(pictures);
   };
 
   useEffect(() => {
+
     try {
       const fetchProducts = async (): Promise<void> => {
+
         const res = await fetch(
           "https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json"
         );

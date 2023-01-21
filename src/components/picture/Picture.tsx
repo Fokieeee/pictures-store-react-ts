@@ -2,20 +2,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { ReactElement, useState } from "react";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { PicturesType } from "../../context/PhotosProvider";
+import { ReducerAction, ReducerActionType } from "../../context/CartProvider";
 import cl from "./index.module.css";
-import {
-  faS,
-  faHeart,
-  faPlus,
-  faCheck,
-} from "@fortawesome/free-solid-svg-icons";
+
+import { faS, faHeart, faPlus, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
 library.add(faS, faHeart, far, faPlus, faCheck);
-import {
-  CartItemType,
-  ReducerAction,
-  ReducerActionType,
-} from "../../context/CartProvider";
 
 type PropsType = {
   picture: PicturesType;
@@ -23,7 +15,6 @@ type PropsType = {
   dispatch: React.Dispatch<ReducerAction>;
   REDUCER_ACTIONS: ReducerActionType;
   inCart: boolean;
-  cart: CartItemType[];
   onFavorite: (id: string) => void;
 };
 
@@ -33,19 +24,16 @@ export const Picture = ({
   dispatch,
   REDUCER_ACTIONS,
   inCart,
-  cart,
   onFavorite,
 }: PropsType): ReactElement => {
   const [isHovered, setIsHovered] = useState(false);
 
   const onAdd = () => {
     dispatch({ type: REDUCER_ACTIONS.ADD, payload: { ...picture } });
-    console.log(cart);
   };
 
   const onRemove = () => {
     dispatch({ type: REDUCER_ACTIONS.REMOVE, payload: { ...picture } });
-    console.log(cart);
   };
 
   return (
@@ -54,17 +42,19 @@ export const Picture = ({
       onMouseLeave={() => setIsHovered(false)}
       className={`${className} ${cl.picture}`}
     >
-      <img src={picture.url} alt="" className={cl.picture__image} />
+      <img src={picture.url} className={cl.picture__image} />
       {isHovered && (
         <div className={cl.picture__icons}>
           <div className={cl.picture__add}>
             {inCart ? (
+							//check Icon
               <FontAwesomeIcon
                 onClick={onRemove}
                 icon={["fas", "check"]}
                 className={cl.picture__check}
               />
             ) : (
+							//plus Icon
               <FontAwesomeIcon
                 onClick={onAdd}
                 icon={["fas", "plus"]}
@@ -72,16 +62,19 @@ export const Picture = ({
               />
             )}
           </div>
+
           <div
             onClick={() => onFavorite(picture.id)}
             className={cl.picture__favorite}
           >
             {picture.isFavorite ? (
+							//FIlled heart Icon 
               <FontAwesomeIcon
                 icon={["fas", "heart"]}
                 className={cl.picture__faFilled}
               />
             ) : (
+							//Empty heart Icon
               <FontAwesomeIcon
                 icon={["far", "heart"]}
                 className={cl.picture__faEmpty}

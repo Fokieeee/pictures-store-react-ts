@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  CartItemType,
-  ReducerAction,
-  ReducerActionType,
-} from "../../context/CartProvider";
+import { CartItemType, ReducerAction, ReducerActionType } from "../../context/CartProvider";
 
 import cl from "./index.module.css";
 
@@ -19,6 +15,7 @@ type PropsType = {
 };
 
 export const CartItem = ({ dispatch, item, REDUCER_ACTIONS }: PropsType) => {
+
   const cost = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
@@ -27,6 +24,7 @@ export const CartItem = ({ dispatch, item, REDUCER_ACTIONS }: PropsType) => {
   const onRemove = () => {
     dispatch({ type: REDUCER_ACTIONS.REMOVE, payload: { ...item } });
   };
+	
   return (
     <div className={cl.cartItem}>
       <div className={cl.cartItem__picture}>

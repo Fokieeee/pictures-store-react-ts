@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import useCart from "../../hooks/useCart";
 import { CartItem } from "../cartItem/CartItem";
 import cl from "./index.module.css";
 
 export const Cart = () => {
-  const [confirm, setConfirm] = useState<boolean>(false);
+	
   const [buttonText, setButtonText] = useState<string>("Place Order");
+
   const { dispatch, REDUCER_ACTIONS, cart } = useCart();
 
   const order = () => {
     setButtonText("Ordering...");
     setTimeout(() => {
       dispatch({ type: REDUCER_ACTIONS.SUBMIT });
-      setConfirm(true);
       setButtonText("Place Order");
     }, 3000);
   };
