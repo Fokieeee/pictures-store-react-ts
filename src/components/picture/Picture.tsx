@@ -10,12 +10,12 @@ import {
   faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
+library.add(faS, faHeart, far, faPlus, faCheck);
 import {
   CartItemType,
   ReducerAction,
   ReducerActionType,
 } from "../../context/CartProvider";
-library.add(faS, faHeart, far, faPlus, faCheck);
 
 type PropsType = {
   picture: PicturesType;
