@@ -16,10 +16,10 @@ type PropsType = {
 export const Header = ({ viewCart, setViewCart }: PropsType) => {
 
   const { totalItems, totalPrice } = useCart();
-	
+
   return (
     <header className={cl.header}>
-      <div className={cl.header__titleBar}>
+      <div onClick={() => setViewCart(false)} className={cl.header__titleBar}>
         <Link to="/">
           <h1>Pictures Store</h1>
         </Link>
