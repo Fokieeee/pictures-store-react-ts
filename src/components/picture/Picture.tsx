@@ -5,7 +5,12 @@ import { PicturesType } from "../../context/PhotosProvider";
 import { ReducerAction, ReducerActionType } from "../../context/CartProvider";
 import cl from "./index.module.css";
 
-import { faS, faHeart, faPlus, faCheck } from "@fortawesome/free-solid-svg-icons";
+import {
+  faS,
+  faHeart,
+  faPlus,
+  faCheck,
+} from "@fortawesome/free-solid-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
 library.add(faS, faHeart, far, faPlus, faCheck);
 
@@ -47,14 +52,14 @@ export const Picture = ({
         <div className={cl.picture__icons}>
           <div className={cl.picture__add}>
             {inCart ? (
-							//check Icon
+              //check Icon
               <FontAwesomeIcon
                 onClick={onRemove}
                 icon={["fas", "check"]}
                 className={cl.picture__check}
               />
             ) : (
-							//plus Icon
+              //plus Icon
               <FontAwesomeIcon
                 onClick={onAdd}
                 icon={["fas", "plus"]}
@@ -67,19 +72,10 @@ export const Picture = ({
             onClick={() => onFavorite(picture.id)}
             className={cl.picture__favorite}
           >
-            {picture.isFavorite ? (
-							//FIlled heart Icon 
-              <FontAwesomeIcon
-                icon={["fas", "heart"]}
-                className={cl.picture__faFilled}
-              />
-            ) : (
-							//Empty heart Icon
-              <FontAwesomeIcon
-                icon={["far", "heart"]}
-                className={cl.picture__faEmpty}
-              />
-            )}
+            <FontAwesomeIcon
+              icon={[`${picture.isFavorite ? "fas" : "far"}`, "heart"]}
+              className={cl.picture__heart}
+            />
           </div>
         </div>
       )}

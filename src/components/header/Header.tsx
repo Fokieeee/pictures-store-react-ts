@@ -1,20 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import cl from "./index.module.css";
 import { Link } from "react-router-dom";
 import useCart from "../../hooks/useCart";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faS, faCartShopping, faImage } from "@fortawesome/free-solid-svg-icons";
+import {
+  faS,
+  faCartShopping,
+  faImage,
+} from "@fortawesome/free-solid-svg-icons";
 library.add(faS, faCartShopping, faImage);
 
-type PropsType = {
+type THeader = {
   viewCart: boolean;
   setViewCart: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export const Header = ({ viewCart, setViewCart }: PropsType) => {
-
+export const Header = ({ viewCart, setViewCart }: THeader) => {
   const { totalItems, totalPrice } = useCart();
 
   return (
