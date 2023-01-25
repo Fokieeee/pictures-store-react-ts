@@ -9,3 +9,4 @@
   - React Router
   - useReducer and custom hooks
   - responsive design
+  - Vite
