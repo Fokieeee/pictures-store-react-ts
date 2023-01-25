@@ -1,6 +1,7 @@
 {
   "name": "pictures-store-react-ts",
   "private": true,
+  "homepage": "https://fokieeee.github.io/pictures-store-react-ts",
   "version": "0.0.0",
   "type": "module",
   "scripts": {

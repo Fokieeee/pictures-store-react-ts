@@ -11,8 +11,8 @@ function App() {
     <div className="App">
       <Header viewCart={viewCart} setViewCart={setViewCart} />
       <Routes>
-        <Route path="/pictures-store-react-ts" element={<PicturesList />} />
-        <Route path="/pictures-store-react-ts/cart" element={<Cart />} />
+        <Route path="/" element={<PicturesList />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
     </div>
   );
