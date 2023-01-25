@@ -49,6 +49,7 @@ body {
 
 a {
   text-decoration: none;
+  color: var(--clr-dark);
 }
 
 a:visited {
