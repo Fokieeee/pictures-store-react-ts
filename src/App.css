@@ -52,13 +52,13 @@ a {
 }
 
 a:visited {
-  color: var(--light-blue);
+  color: var(--clr-dark);
 }
 a:hover {
-  color: var(--light-blue);
+  color: var(--clr-dark);
 }
 a:active {
-  color: var(--light-blue);
+  color: var(--clr-dark);
 }
 
 /*picture condition size*/

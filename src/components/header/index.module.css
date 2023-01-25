@@ -16,14 +16,20 @@
   gap: 3em;
 }
 
+.header__titleBar {
+  color: var(--clr-dark);
+}
+
 .header__cartIcon {
   height: 1.7em;
   cursor: pointer;
+  color: var(--clr-dark);
 }
 
 .header__imageIcon {
   height: 1.7em;
   cursor: pointer;
+  color: var(--clr-dark);
 }
 
 .header__rightSide {

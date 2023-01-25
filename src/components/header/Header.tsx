@@ -23,7 +23,7 @@ export const Header = ({ viewCart, setViewCart }: THeader) => {
   return (
     <header className={cl.header}>
       <div onClick={() => setViewCart(false)} className={cl.header__titleBar}>
-        <Link to="/">
+        <Link to="/pictures-store-react-ts/">
           <h1>Pictures Store</h1>
         </Link>
       </div>
@@ -37,14 +37,14 @@ export const Header = ({ viewCart, setViewCart }: THeader) => {
           onClick={() => setViewCart((prev) => !prev)}
         >
           {viewCart ? (
-            <Link to="/">
+            <Link to="/pictures-store-react-ts/">
               <FontAwesomeIcon
                 icon={["fas", "image"]}
                 className={cl.header__imageIcon}
               />
             </Link>
           ) : (
-            <Link to="/cart">
+            <Link to="/pictures-store-react-ts/cart">
               <FontAwesomeIcon
                 icon={["fas", "cart-shopping"]}
                 className={cl.header__cartIcon}
