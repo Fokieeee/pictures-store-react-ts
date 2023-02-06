@@ -2,7 +2,7 @@ import { ReactElement } from "react";
 import useCart from "../../hooks/useCart";
 import { usePictures } from "../../hooks/usePictures";
 import { Picture } from "../picture/Picture";
-import cl from "./index.module.css";
+import cl from "./index.module.scss";
 
 export const PicturesList = () => {
   const { pictures, onFavorite } = usePictures();
@@ -39,5 +39,5 @@ export const PicturesList = () => {
     });
   }
 
-  return <div className={cl.catalog}>{pageContent}</div>;
+  return <div className={cl.pictureList}>{pageContent}</div>;
 };

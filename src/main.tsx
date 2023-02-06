@@ -5,6 +5,9 @@ import App from "./App";
 import { CartProvider } from "./context/CartProvider";
 import PicturesContext, { PhotosProvider } from "./context/PhotosProvider";
 
+import './styles/reset.scss'
+import './styles/index.scss'
+
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <HashRouter>

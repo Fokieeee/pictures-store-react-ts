@@ -3,7 +3,7 @@ import React, { ReactElement, useState } from "react";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { PicturesType } from "../../context/PhotosProvider";
 import { ReducerAction, ReducerActionType } from "../../context/CartProvider";
-import cl from "./index.module.css";
+import cl from "./index.module.scss";
 
 import {
   faS,
