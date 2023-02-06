@@ -1,7 +1,7 @@
 import React from "react";
 import { CartItemType, ReducerAction, ReducerActionType } from "../../context/CartProvider";
 
-import cl from "./index.module.css";
+import cl from "./index.module.scss";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

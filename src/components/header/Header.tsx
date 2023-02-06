@@ -1,5 +1,5 @@
 import React from "react";
-import cl from "./index.module.css";
+import cl from "./index.module.scss";
 import { Link } from "react-router-dom";
 import useCart from "../../hooks/useCart";
 

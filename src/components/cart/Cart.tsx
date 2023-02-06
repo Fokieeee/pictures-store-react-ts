@@ -1,7 +1,7 @@
 import { useState } from "react";
 import useCart from "../../hooks/useCart";
 import { CartItem } from "../cartItem/CartItem";
-import cl from "./index.module.css";
+import cl from "./index.module.scss";
 
 export const Cart = () => {
 	

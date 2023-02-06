@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import { Cart } from "./components/cart/Cart";
 import { Header } from "./components/header/Header";
 import { PicturesList } from "./components/picturesList/PicturesList";
-import "./App.css";
+// import "./App.css";
 
 function App() {
   const [viewCart, setViewCart] = useState<boolean>(false);
